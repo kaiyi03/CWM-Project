@@ -7,6 +7,7 @@ so the computation has an observable result.
 """
 
 import sys
+import time
 from typing import List
 
 Matrix = List[List[float]]
@@ -28,12 +29,30 @@ def zero_matrix(n: int) -> Matrix:
 # Intentionally simple O(n^3) matrix multiplication.
 # This loop order is correct but cache-unfriendly for matrix B.
 def matmul_slow(a: Matrix, b: Matrix, c: Matrix, n: int) -> None:
+    
+    func_start = time.perf_counter_ns()  # ← start whole function timer
+    
+    single_cell_measured = False  # ← flag for single cell
+    
     for i in range(n):
         for j in range(n):
             total = 0.0
+            
+            cell_start = time.perf_counter_ns()  # ← start cell timer
+            
             for k in range(n):
                 total += a[i][k] * b[k][j]
+            
+            cell_end = time.perf_counter_ns()  # ← end cell timer
+            
+            if not single_cell_measured:
+                print(f"Single cell time: {cell_end - cell_start} ns")
+                single_cell_measured = True  # ← only print once
+            
             c[i][j] = total
+    
+    func_end = time.perf_counter_ns()  # ← end whole function timer
+    print(f"matmul_slow total time: {func_end - func_start} ns")
 
 
 def checksum(m: Matrix, n: int) -> float:
@@ -72,16 +91,14 @@ def parse_args(argv: list[str]) -> tuple[int, int]:
 
 def main(argv: list[str]) -> int:
     n, reps = parse_args(argv)
-
-    #Initialise around a seed.
     a = init_matrix(n, 1.0)
     b = init_matrix(n, 2.0)
-
     c = zero_matrix(n)
-
-    for _ in range(reps):
+    
+    for rep in range(reps):
+        print(f"\n--- Repetition {rep+1} ---")  # ← add this
         matmul_slow(a, b, c, n)
-
+    
     print(f"n={n} reps={reps} checksum={checksum(c, n):.6f}")
     return 0
 

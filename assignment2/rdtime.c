@@ -151,7 +151,7 @@ uint64_t min_consecutive_diff(size_t num, const char *filename) {
      * Collect TSC readings.
      */
     for (size_t i = 0; i < num; i++) {
-        timestamps[i] = read_tsc();
+        timestamps[i] = __rdtsc();
     }
 
     /*

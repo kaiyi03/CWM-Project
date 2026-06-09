@@ -4,12 +4,12 @@ import matplotlib.pyplot as plt
 
 
 # parameters to modify 
-filename="time_py.txt"
-label='Python TSC reads'
-xlabel = 'Time diff (ns)'
-ylabel = 'cumulative probability'
-title='CDF of Python timing'
-fig_name='cdf_python.png'
+filename = "rtt_0001.txt"
+label = "interval 0.0001s"
+xlabel = "RTT (ms)"
+ylabel = "Cumulative probability"
+title = "CDF of localhost ping - interval 0.0001s"
+fig_name = "cdf_ping_0001.png"
 bins=100 #adjust the number of bins to your plot
 
 ## load data from input file
@@ -29,7 +29,7 @@ n = np.arange(1,len(t)+1) / float(len(t))
 ts = np.sort(t)
 fig, ax = plt.subplots()
 ax.step(ts,n)
-ax.set_xlim(0, 1000)
+ax.set_xlim(0, 0.1)
 
 plt.xlabel(xlabel)
 plt.ylabel(ylabel)

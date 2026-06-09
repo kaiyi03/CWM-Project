@@ -1,0 +1,15 @@
+PING d1puhpgqrhw451.cloudfront.net (99.86.12.25) 56(84) bytes of data.
+64 bytes from server-99-86-12-25.lhr95.r.cloudfront.net (99.86.12.25): icmp_seq=1 ttl=245 time=4.08 ms
+64 bytes from server-99-86-12-25.lhr95.r.cloudfront.net (99.86.12.25): icmp_seq=2 ttl=245 time=4.07 ms
+64 bytes from server-99-86-12-25.lhr95.r.cloudfront.net (99.86.12.25): icmp_seq=3 ttl=245 time=4.03 ms
+64 bytes from server-99-86-12-25.lhr95.r.cloudfront.net (99.86.12.25): icmp_seq=4 ttl=245 time=4.18 ms
+64 bytes from server-99-86-12-25.lhr95.r.cloudfront.net (99.86.12.25): icmp_seq=5 ttl=245 time=4.18 ms
+64 bytes from server-99-86-12-25.lhr95.r.cloudfront.net (99.86.12.25): icmp_seq=6 ttl=245 time=4.19 ms
+64 bytes from server-99-86-12-25.lhr95.r.cloudfront.net (99.86.12.25): icmp_seq=7 ttl=245 time=4.21 ms
+64 bytes from server-99-86-12-25.lhr95.r.cloudfront.net (99.86.12.25): icmp_seq=8 ttl=245 time=4.03 ms
+64 bytes from server-99-86-12-25.lhr95.r.cloudfront.net (99.86.12.25): icmp_seq=9 ttl=245 time=4.17 ms
+64 bytes from server-99-86-12-25.lhr95.r.cloudfront.net (99.86.12.25): icmp_seq=10 ttl=245 time=3.98 ms
+
+--- d1puhpgqrhw451.cloudfront.net ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 1805ms
+rtt min/avg/max/mdev = 3.976/4.111/4.210/0.078 ms
