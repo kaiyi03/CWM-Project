@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Compiled C binaries (rebuild with `make` from Exercise 4 sources)
+4A/main
+4B/src/vuln
+*.o
+
+# OS / editor clutter
+.DS_Store
+.vscode/
+
+# --- Fuzzing outputs ---
+# Exercise 6 asks you to submit generated log files, so logs/ and
+# backtraces/ are tracked by default. If you want to exclude raw
+# per-trial data and only commit a summary, uncomment below:
+# fuzzer/logs/*.csv
+# fuzzer/backtraces/*
