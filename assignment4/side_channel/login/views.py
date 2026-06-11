@@ -44,9 +44,11 @@ def safe_check(username: str, password: str) -> bool:
         # code below is vulnerable. Fix it!
         # then replace _vulnerable_check with safe_check in login_view() below
         if i >= len(SECRET_PASSWORD) or ch != SECRET_PASSWORD[i]:
+            time.sleep(random.uniform(0, 0.01))  #add a random delay noise before returning false
             return False
         time.sleep(DELAY_PER_CHAR)
-
+        
+    time.sleep(random.uniform(0, 0.01))
     return len(password) == len(SECRET_PASSWORD)
 
 
