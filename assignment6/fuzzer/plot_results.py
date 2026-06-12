@@ -121,32 +121,56 @@ def collect_ttc(target, strategy):
 
 
 def plot_strategy_comparison():
+    from analysis import crash_rate, hijack_rate
+
     targets = ["4a", "4b"]
     strategies = ["random", "boundary"]
+
+    # For 4A use hijack_rate, for 4B use crash_rate
+    rate_fn = {"4a": hijack_rate, "4b": crash_rate}
 
     means = {s: [] for s in strategies}
     stds  = {s: [] for s in strategies}
 
     for target in targets:
+        fn = rate_fn[target]
         for strategy in strategies:
-            values = collect_ttc(target, strategy)
+            values = []
+            for rep in REPS:
+                path = os.path.join(LOG_ROOT, f"rep{rep}",
+                                    f"{target}_{strategy}.csv")
+                if not os.path.exists(path):
+                    print(f"[warning] missing: {path}")
+                    continue
+                values.append(fn(load_trials(path)))
             means[strategy].append(np.mean(values) if values else 0)
             stds[strategy].append(np.std(values)  if values else 0)
 
     x = np.arange(len(targets))
     width = 0.35
 
-    fig, ax = plt.subplots(figsize=(6, 4))
+    fig, ax = plt.subplots(figsize=(7, 5))
     ax.bar(x - width/2, means["random"],   width, yerr=stds["random"],
            label="Random",   color="tab:blue",   capsize=4)
     ax.bar(x + width/2, means["boundary"], width, yerr=stds["boundary"],
            label="Boundary", color="tab:orange", capsize=4)
 
     ax.set_xticks(x)
-    ax.set_xticklabels(["4A", "4B"])
-    ax.set_ylabel("Mean trials to first crash (± std over reps)")
-    ax.set_title("Strategy Efficiency Comparison")
+    ax.set_xticklabels(["4A (hijack rate)", "4B (crash rate)"])
+    ax.set_ylabel("Rate (fraction of trials)")
+    ax.set_ylim(0, 1)
+    ax.set_title("Strategy Efficiency: Hijack Rate (4A) vs Crash Rate (4B)")
     ax.legend()
+
+    # add value labels on top of each bar for clarity
+    for rect in ax.patches:
+        height = rect.get_height()
+        if height > 0:
+            ax.annotate(f"{height:.2f}",
+                        xy=(rect.get_x() + rect.get_width() / 2, height),
+                        xytext=(0, 3), textcoords="offset points",
+                        ha="center", va="bottom", fontsize=9)
+
     fig.tight_layout()
     fig.savefig(os.path.join(PLOT_DIR, "strategy_comparison.png"))
     plt.close(fig)
