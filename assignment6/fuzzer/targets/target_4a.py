@@ -36,9 +36,9 @@ def run_4a(offset, timeout=2):
     """
     try:
         result = subprocess.run(
-            [BINARY, str(offset)],
-            capture_output=True,
-            timeout=timeout,
+        ["stdbuf", "-o0", "-e0", BINARY, str(offset)],
+        capture_output=True,
+        timeout=timeout,
         )
         rc = result.returncode
         raw_out = result.stdout + result.stderr

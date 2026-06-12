@@ -1,0 +1,33 @@
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) [answered N; input not from terminal]
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+=====================================
+    SECURE AUTHENTICATION SYSTEM    
+=====================================
+Welcome to the secure login system!
+
+Username: Password: Authentication successful!
+Enter your name: Enter your department: Thank you Fuzzer from Eng!
+Enter system command to process: Processing command: ls
+Enter response data: Response processed: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00000000004014ed in process_command ()
+#0  0x00000000004014ed in process_command ()
+#1  0x4141414141414141 in ?? ()
+#2  0x4141414141414141 in ?? ()
+#3  0x00007ffff7dc1100 in IO_set_accept_foreign_vtables (flag=0x0) at ../libio/libioP.h:1002
+#4  check_stdfiles_vtables () at ./libio/vtables.c:549
+#5  0x00007fffffffdda0 in ?? ()
+#6  0x00007fffffffde78 in ?? ()
+#7  0x0000000100400040 in ?? ()
+#8  0x0000000000401679 in authenticate_user ()
+#9  0x00007fffffffde78 in ?? ()
+#10 0xeecbc908fed2dfa9 in ?? ()
+#11 0x0000000000000001 in ?? ()
+#12 0x0000000000000000 in ?? ()

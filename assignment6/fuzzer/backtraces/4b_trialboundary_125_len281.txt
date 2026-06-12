@@ -1,0 +1,26 @@
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) [answered N; input not from terminal]
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+=====================================
+    SECURE AUTHENTICATION SYSTEM    
+=====================================
+Welcome to the secure login system!
+
+Username: Password: Authentication successful!
+Enter your name: Enter your department: Thank you Fuzzer from Eng!
+Enter system command to process: Processing command: ls
+Enter response data: Response processed: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00000000004014ed in process_command ()
+#0  0x00000000004014ed in process_command ()
+#1  0x4141414141414141 in ?? ()
+#2  0x4141414141414141 in ?? ()
+#3  0x00007ffff7dc0041 in _IO_acquire_lock_fct (p=<synthetic pointer>) at ./libio/libioP.h:980
+#4  __GI__IO_setvbuf (fp=0x7fffffffde78, buf=0x0, mode=<optimized out>, size=4210176) at ./libio/iosetvbuf.c:38
+Backtrace stopped: Cannot access memory at address 0x4141414141414149
